@@ -49,7 +49,7 @@ function* sendTransaction() {
     const variables = {
       transaction: {
         gasLimit: (receipt.gasLimit && receipt.gasLimit.toString()) || '0',
-        gasPrice: (receipt.gasPrice && receipt.gasPrice.toString())|| '0',
+        gasPrice: (receipt.gasPrice && receipt.gasPrice.toString()) || '0',
         to: receipt.to,
         from: receipt.from,
         value: (receipt.value && receipt.value.toString()) || '',
@@ -63,6 +63,14 @@ function* sendTransaction() {
       mutation: SaveTransaction,
       variables,
     });
+
+    /**
+     * 4. Navigation & Redirection
+     * We observer that by clicking on a transaction we reach its location 
+     * (example: http://localhost:3000/transaction/0xd31a52b866ac485523f97a185f661dd267a6b49e9d46a8df98adfa4413579ba3).
+     * We replicate this behaviour by using our "NaiveRoute" component and its "navigate" function by passing
+     * the transaction hash right after the transaction was succesfull in our "try" block.
+    */
 
     navigate(`/transaction/${receipt.hash}`);
   } catch (error) {
