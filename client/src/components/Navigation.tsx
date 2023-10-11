@@ -1,19 +1,22 @@
 import React, { useCallback, useState } from 'react';
 import Onboard, { WalletState } from '@web3-onboard/core'
+import injectedModule from "@web3-onboard/injected-wallets";
 
 import SendTransaction from './SendTransaction';
 
+const injected = injectedModule();
+
 const onboard = Onboard({
-  wallets: [],
-  chains: [
-    {
-      id: '123456',
-      token: 'ETH',
-      label: 'Local Ganache',
-      rpcUrl: 'http://localhost:8545',
-    },
-  ]
-})
+    wallets: [injected],
+    chains: [
+        {
+            id: "123456",
+            token: "ETH",
+            label: "Local Ganache",
+            rpcUrl: "http://localhost:8545",
+        },
+    ],
+});
 
 const Navigation: React.FC = () => {
   const [wallet, setWallet] = useState<WalletState>();
