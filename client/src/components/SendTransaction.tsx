@@ -32,6 +32,13 @@ const SendTransaction: React.FC<{ senderAddress: string }> = ({senderAddress}) =
         [dispatch, reset]
     );
 
+  /**
+   * 5. Wire in the Form
+   * We create a custom interface that will hold our payload called "TransactionPayload".
+   * We update the Redux Saga in order to handle our new payload and close the modal on succesfull transactions.
+   * We rely on "react-hook-form" module to validate and submit our payload.
+   */
+
     return (
         <>
             <button
