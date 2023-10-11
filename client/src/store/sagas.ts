@@ -24,6 +24,15 @@ function* sendTransaction() {
     return accounts[random].address;
   };
 
+  /**
+   * 3. Fix Redux Saga
+   * We start debugging by logging the error.
+   * We notice an invalid value at the request value.
+   * TypeError: overflow (argument="request.value", value=1000000000000000000, code=INVALID_ARGUMENT, version=6.8.0)
+   * We know that numeric literals with absolute values equal to 2^53 or greater are too large to be represented accurately as integers.
+   * We change our value to BigInt which is the right primitive to handle large integers.
+   */
+
   const transaction = {
     to: randomAddress(),
     value: BigInt(1000000000000000000),
