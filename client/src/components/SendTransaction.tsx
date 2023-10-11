@@ -4,14 +4,19 @@ import { useForm, SubmitHandler } from "react-hook-form";
 
 import { Actions, TransactionPayload } from "../types";
 
-const SendTransaction: React.FC = () => {
+const SendTransaction: React.FC<{ senderAddress: string }> = ({senderAddress}) => {
     const dispatch = useDispatch();
     const {
         handleSubmit,
         register,
         reset,
         formState: { errors },
-    } = useForm<TransactionPayload>();
+    } = useForm<TransactionPayload>({
+        defaultValues: {
+            senderAddress: senderAddress,
+            recipient: "",
+            amount: 1,
+    }});
 
     const onSubmit: SubmitHandler<TransactionPayload> = (transactionData) => {
         handleDispatch(transactionData);
@@ -82,8 +87,7 @@ const SendTransaction: React.FC = () => {
                                     type="text"
                                     id="input-sender"
                                     className="opacity-70 pointer-events-none py-3 px-4 block bg-gray-50 border-gray-800 rounded-md text-sm focus:border-blue-500 focus:ring-blue-500 w-full"
-                                    placeholder="Sender Address (Autocompleted)"
-                                    /* disabled */
+                                    {...register('senderAddress', {disabled: true})}
                                 />
                                 <label
                                     htmlFor="input-recipient"

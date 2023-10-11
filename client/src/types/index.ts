@@ -27,6 +27,7 @@ export enum Actions {
 };
 
 export interface TransactionPayload  {
+  senderAddress: string;
   recipient: string;
   amount: number;
 }
