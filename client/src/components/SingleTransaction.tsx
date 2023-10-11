@@ -9,7 +9,11 @@ interface SingleTransactionProps {
 }
 
 const SingleTransaction: React.FC<SingleTransactionProps> = ({ id }) => {
-  const handleGoBack = () => navigate(`/transactions`);
+  const handleGoBack =
+    () => {
+      navigate(`/transactions`)
+      window.location.reload();
+    };
 
   const { loading, error, data } = useQuery<SingleTransactionData>(
     GetSingleTransaction,
