@@ -4,6 +4,15 @@ import injectedModule from "@web3-onboard/injected-wallets";
 
 import SendTransaction from './SendTransaction';
 
+/**
+ * 2. Wallet Connection
+ * We start by checking the console logs.
+ * We notice that the issue is found on the "Navigation" component in the "handleConnect" promise.
+ * We take a look at the "Onboard" namespace and we see that it relies on the "@web3-onboard" module.
+ * We check the official docs https://onboard.blocknative.com/docs/overview/introduction.
+ * We observe that we lack the "injected" item from the wallets Array and we add it.
+ */
+
 const injected = injectedModule();
 
 const onboard = Onboard({
