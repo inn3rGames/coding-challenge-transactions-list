@@ -102,8 +102,17 @@ const SendTransaction: React.FC<{ senderAddress: string }> = ({senderAddress}) =
                                     placeholder="Recipient Address"
                                     {...register("recipient", {
                                         required: true,
+                                        pattern: {
+                                            value: new RegExp("^0x[a-fA-F0-9]{40}$"),
+                                            message: "Please enter a valid address"
+                                        }
                                     })}
                                 />
+                                {errors.recipient && (
+                                        <div className="text-blue-500 text-sm">
+                                            {errors.recipient.message}
+                                        </div>
+                                    )}
                                 <label
                                     htmlFor="input-amount"
                                     className="block text-sm font-bold my-2"
@@ -117,8 +126,14 @@ const SendTransaction: React.FC<{ senderAddress: string }> = ({senderAddress}) =
                                     placeholder="Amount"
                                     {...register("amount", {
                                         required: true,
+                                        min: { value: 0, message: "Amount must be positive"}
                                     })}
                                 />
+                                {errors.amount && (
+                                        <div className="text-blue-500 text-sm">
+                                            {errors.amount.message}
+                                        </div>
+                                    )}
                             </div>
                             <div className="flex justify-end items-center gap-x-2 py-3 px-4 border-t">
                                 <button
