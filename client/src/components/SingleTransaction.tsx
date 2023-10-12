@@ -60,7 +60,7 @@ const SingleTransaction: React.FC<SingleTransactionProps> = ({ id }) => {
           <p><span className="font-bold">Transaction Hash:</span> {hash}</p>
           <p><span className="font-bold">Sender Address:</span> {from}</p>
           <p><span className="font-bold">Recipient Address:</span> {to}</p>
-          <p><span className="font-bold">Amount:</span> {value ? parseInt(ethers.formatEther(value)).toFixed(4): "0"} ETH</p>
+          <p><span className="font-bold">Amount:</span> {value ? parseFloat(ethers.formatEther(value)).toFixed(4): "0"} ETH</p>
         </div>
       </div>
     </div>

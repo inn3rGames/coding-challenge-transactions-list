@@ -38,6 +38,13 @@ const TransactionList: React.FC = () => {
     );
   }
 
+  /**
+   * 7. Human Readable Values
+   * We start by using the "ethers" module to convert our WEI values to ETH
+   * After that we use parseFloat to convert our string to a number
+   * The next step is to display the number as a string up to 4 decimals
+   */
+
   return (
     <div className="flex flex-col mt-20">
       <div className="max-w-[85rem] w-full mx-auto px-4 sm:flex sm:items-center sm:justify-between">
@@ -46,7 +53,7 @@ const TransactionList: React.FC = () => {
             <>
               {transactions.map(({ hash, to, from, value }) => (
                 <div key={hash} className="bg-white shadow-sm p-4 md:p-5 border rounded border-gray-300 mt-3 hover:border-blue-500 cursor-pointer" onClick={() => handleNavigate(hash)}>
-                  <span className="font-bold">{value ? parseInt(ethers.formatEther(value)).toFixed(4): "0"} ETH</span> sent from <span className="font-bold">{from}</span> to <span className="font-bold">{to}</span>
+                  <span className="font-bold">{value ? parseFloat(ethers.formatEther(value)).toFixed(4): "0"} ETH</span> sent from <span className="font-bold">{from}</span> to <span className="font-bold">{to}</span>
                 </div>
               ))}
             </>
