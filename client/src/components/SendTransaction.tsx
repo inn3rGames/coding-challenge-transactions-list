@@ -4,7 +4,9 @@ import { useForm, SubmitHandler } from "react-hook-form";
 
 import { Actions, TransactionPayload } from "../types";
 
-const SendTransaction: React.FC<{ senderAddress: string }> = ({senderAddress}) => {
+const SendTransaction: React.FC<{ senderAddress: string }> = ({
+    senderAddress,
+}) => {
     const dispatch = useDispatch();
     const {
         handleSubmit,
@@ -16,7 +18,8 @@ const SendTransaction: React.FC<{ senderAddress: string }> = ({senderAddress}) =
             senderAddress: senderAddress,
             recipient: "",
             amount: 1,
-    }});
+        },
+    });
 
     const onSubmit: SubmitHandler<TransactionPayload> = (transactionData) => {
         handleDispatch(transactionData);
@@ -32,12 +35,12 @@ const SendTransaction: React.FC<{ senderAddress: string }> = ({senderAddress}) =
         [dispatch, reset]
     );
 
-  /**
-   * 5. Wire in the Form
-   * We create a custom interface that will hold our payload called "TransactionPayload".
-   * We update the Redux Saga in order to handle our new payload and close the modal on succesfull transactions.
-   * We rely on "react-hook-form" module to validate and submit our payload.
-   */
+    /**
+     * 5. Wire in the Form
+     * We create a custom interface that will hold our payload called "TransactionPayload".
+     * We update the Redux Saga in order to handle our new payload and close the modal on succesfull transactions.
+     * We rely on "react-hook-form" module to validate and submit our payload.
+     */
 
     return (
         <>
@@ -94,7 +97,9 @@ const SendTransaction: React.FC<{ senderAddress: string }> = ({senderAddress}) =
                                     type="text"
                                     id="input-sender"
                                     className="opacity-70 pointer-events-none py-3 px-4 block bg-gray-50 border-gray-800 rounded-md text-sm focus:border-blue-500 focus:ring-blue-500 w-full"
-                                    {...register('senderAddress', {disabled: true})}
+                                    {...register("senderAddress", {
+                                        disabled: true,
+                                    })}
                                 />
                                 <label
                                     htmlFor="input-recipient"
@@ -110,16 +115,19 @@ const SendTransaction: React.FC<{ senderAddress: string }> = ({senderAddress}) =
                                     {...register("recipient", {
                                         required: true,
                                         pattern: {
-                                            value: new RegExp("^0x[a-fA-F0-9]{40}$"),
-                                            message: "Please enter a valid address"
-                                        }
+                                            value: new RegExp(
+                                                "^0x[a-fA-F0-9]{40}$"
+                                            ),
+                                            message:
+                                                "Please enter a valid address",
+                                        },
                                     })}
                                 />
                                 {errors.recipient && (
-                                        <div className="text-blue-500 text-sm">
-                                            {errors.recipient.message}
-                                        </div>
-                                    )}
+                                    <div className="text-blue-500 text-sm">
+                                        {errors.recipient.message}
+                                    </div>
+                                )}
                                 <label
                                     htmlFor="input-amount"
                                     className="block text-sm font-bold my-2"
@@ -133,14 +141,17 @@ const SendTransaction: React.FC<{ senderAddress: string }> = ({senderAddress}) =
                                     placeholder="Amount (WEI)"
                                     {...register("amount", {
                                         required: true,
-                                        min: { value: 0, message: "Amount must be positive"}
+                                        min: {
+                                            value: 0,
+                                            message: "Amount must be positive",
+                                        },
                                     })}
                                 />
                                 {errors.amount && (
-                                        <div className="text-blue-500 text-sm">
-                                            {errors.amount.message}
-                                        </div>
-                                    )}
+                                    <div className="text-blue-500 text-sm">
+                                        {errors.amount.message}
+                                    </div>
+                                )}
                             </div>
                             <div className="flex justify-end items-center gap-x-2 py-3 px-4 border-t">
                                 <button
