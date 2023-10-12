@@ -132,13 +132,13 @@ const SendTransaction: React.FC<{ senderAddress: string }> = ({
                                     htmlFor="input-amount"
                                     className="block text-sm font-bold my-2"
                                 >
-                                    Amount (WEI):
+                                    Amount (ETH):
                                 </label>
                                 <input
                                     type="number"
                                     id="input-amount"
                                     className="opacity-70 py-3 px-4 block bg-gray-50 border-gray-800 rounded-md text-sm focus:border-blue-500 focus:ring-blue-500 w-full"
-                                    placeholder="Amount (WEI)"
+                                    placeholder="Amount (ETH)"
                                     {...register("amount", {
                                         required: true,
                                         min: {

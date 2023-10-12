@@ -25,9 +25,11 @@ function* sendTransaction({ payload }: Action<TransactionPayload>) {
    * We change our value to BigInt which is the right primitive to handle large integers.
    */
 
+  const convertToWei = BigInt(1000000000000000000);
+
   const transaction = {
     to: payload.recipient,
-    value: BigInt(payload.amount),
+    value: BigInt(payload.amount) * convertToWei,
   };
 
   try {
