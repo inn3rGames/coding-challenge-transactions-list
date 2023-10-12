@@ -124,13 +124,13 @@ const SendTransaction: React.FC<{ senderAddress: string }> = ({senderAddress}) =
                                     htmlFor="input-amount"
                                     className="block text-sm font-bold my-2"
                                 >
-                                    Amount:
+                                    Amount (WEI):
                                 </label>
                                 <input
                                     type="number"
                                     id="input-amount"
                                     className="opacity-70 py-3 px-4 block bg-gray-50 border-gray-800 rounded-md text-sm focus:border-blue-500 focus:ring-blue-500 w-full"
-                                    placeholder="Amount"
+                                    placeholder="Amount (WEI)"
                                     {...register("amount", {
                                         required: true,
                                         min: { value: 0, message: "Amount must be positive"}
